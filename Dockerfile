@@ -10,7 +10,7 @@ ENV JMETER_HOME /opt/apache-jmeter-${JMETER_VERSION}
 ENV JMETER_CUSTOM_PLUGINS_FOLDER /plugins
 ENV	JMETER_BIN	${JMETER_HOME}/bin
 ENV	JMETER_DOWNLOAD_URL  https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-${JMETER_VERSION}.tgz
-ENV SCRIPT_NAME API_PERF_library-management.xyz.jmx
+ENV SCRIPT_NAME UI_PERF_library-management.xyz.jmx
 
 # Install extra packages
 # Set TimeZone, See: https://github.com/gliderlabs/docker-alpine/issues/136#issuecomment-612751142
@@ -39,7 +39,7 @@ RUN  chmod +x ${JMETER_HOME}/bin/examples/${SCRIPT_NAME}
 	 	
 ENTRYPOINT    sh ${JMETER_HOME}/bin/jmeter.sh -n -t ${JMETER_HOME}/bin/examples/${SCRIPT_NAME} -l ${JMETER_HOME}/bin/reports/report2.log -e -o ${JMETER_HOME}/bin/reports  \
     && cd ${JMETER_HOME}/bin/reports/  \
-    && zip -r API_PERF_Results.zip .
+    && zip -r UI_PERF_Results.zip .
 
 # TODO: plugins (later)
 # && unzip -oq "/tmp/dependencies/JMeterPlugins-*.zip" -d $JMETER_HOME
